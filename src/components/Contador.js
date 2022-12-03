@@ -1,9 +1,9 @@
 import styled from "styled-components"
 
-export default function Contador(){
+export default function Contador(props){
     return (
         <StyleContador>
-         0/8 Concluídos
+         0/{props.cardsLength} Concluídos
         </StyleContador>
     )
 }

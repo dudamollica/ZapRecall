@@ -1,64 +1,65 @@
 import styled from "styled-components"
 import Perguntas from "./Perguntas"
+import React from "react"
+import Respostas from "./Respostas"
 
-export default function FlashCards() {
+export default function FlashCards(props) {
+    const [questions, setQuestions] = React.useState([])
+    const [appearAnswer, setAppearAnswer] = React.useState([])
 
+    function lineThrough(question){
+
+    }
+    
     const Cards = [
         {
-            title: "Pergunta 1",
-            question:"O que é JSX?",
-            answer:"Uma extensão de linguagem do JavaScript",
+            question: "O que é JSX?",
+            answer: "Uma extensão de linguagem do JavaScript",
         },
         {
-            title:"Pergunta 2",
-            question:"",
-            answer:"",
+            question: "O React é __",
+            answer: "uma biblioteca JavaScript para construção de interfaces",
         },
         {
-            title:"Pergunta 3",
-            question:"",
-            answer:"",
+            question: "Componentes devem iniciar com __",
+            answer: "letra maiúscula",
         },
         {
-            title:"Pergunta 4",
-            question:"",
-            answer:"",
+            question: "Podemos colocar __ dentro do JSX",
+            answer: "expressões",
         },
         {
-            title:"Pergunta 5",
-            question:"",
-            answer:"",
+            question: "O ReactDOM nos ajuda __ ",
+            answer: "interagindo com a DOM para colocar componentes React na mesma",
         },
         {
-            title:"Pergunta 6",
-            question:"",
-            answer:"",
+            question: "Usamos o npm para __",
+            answer: "gerenciar os pacotes necessários e suas dependências",
         },
         {
-            title:"Pergunta 7",
-            question:"",
-            answer:"",
+            question: "Usamos props para __",
+            answer: "passar diferentes informações para componentes",
         },
         {
-            title:"Pergunta 8",
-            question:"",
-            answer:"",
-        },
-        {
-            title:"Pergunta 9",
-            question:"",
-            answer:"",
-        },
-        {
-            title:"Pergunta 10",
-            question:"",
-            answer:"",
-        },
+            question: "Usamos estado (state) para __",
+            answer: "dizer para o React quais informações quando atualizadas devem renderizar a tela novamente",
+        }
     ]
+    props.setCardsLength(Cards.length)
 
     return (
         <StyleFlashCards>
-            {Cards.map((q) => <Perguntas title={q.title} question={q.question}/>)}
+        {Cards.map((q, index) => <Perguntas
+        index={index}
+        key={q.question}
+        question={q.question}
+        questions={questions}
+        answer={q.answer}
+        setQuestions={setQuestions}
+        appearAnswer={appearAnswer}
+        setAppearAnswer={setAppearAnswer}
+        Cards={Cards}
+    />)}
         </StyleFlashCards>
     )
 }
