@@ -6,16 +6,16 @@ import React from "react";
 
 function App() {
   const [cardsLength, setCardsLength] = React.useState([])
-  const [concluded, setConcluded] = React.useState ([])
+  const [concluded, setConcluded] = React.useState([])
 
   return (
     <>
       <GlobalStyle />
       <Topo />
-      <FlashCards 
-      setCardsLength={setCardsLength} 
-      concluded={concluded}
-      setConcluded={setConcluded}
+      <FlashCards
+        setCardsLength={setCardsLength}
+        concluded={concluded}
+        setConcluded={setConcluded}
       />
       <Contador concluded={concluded} cardsLength={cardsLength} />
     </>

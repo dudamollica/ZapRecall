@@ -1,14 +1,14 @@
 import styled from "styled-components"
 
-export default function Contador(props){
+export default function Contador(props) {
     return (
         <StyleContador>
-         {props.concluded.length}/{props.cardsLength} Concluídos
+            {props.concluded.length}/{props.cardsLength} Concluídos
         </StyleContador>
     )
 }
 
-const StyleContador= styled.div `
+const StyleContador = styled.div`
 background: white;
 box-shadow: 0px -4px 6px rgba(0, 0, 0, 0.05);
 height: 70px;

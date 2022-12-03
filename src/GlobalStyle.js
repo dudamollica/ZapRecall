@@ -44,6 +44,9 @@ table {
     border-collapse: collapse;
     border-spacing: 0;
 }
+ion-icon:hover{
+    cursor:pointer;
+}
 `
 
 

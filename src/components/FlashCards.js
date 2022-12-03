@@ -1,15 +1,10 @@
 import styled from "styled-components"
 import Perguntas from "./Perguntas"
 import React from "react"
-import Respostas from "./Respostas"
 
 export default function FlashCards(props) {
     const [questions, setQuestions] = React.useState([])
     const [appearAnswer, setAppearAnswer] = React.useState([])
-
-    function lineThrough(question){
-
-    }
     
     const Cards = [
         {
