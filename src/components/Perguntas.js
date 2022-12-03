@@ -19,8 +19,8 @@ export default function Perguntas(props) {
         props.setAppearAnswer(newArray)
     }
 
-    const iconPlay = <ion-icon name="play-outline" onClick={() => selectedQuestion(props.question)}></ion-icon>
-    const iconTurn = <ion-icon name="sync-outline" onClick={() => addAppearAnswer(props.answer)}></ion-icon>
+    const iconPlay = <ion-icon data-test="play-btn" name="play-outline" onClick={() => selectedQuestion(props.question)}></ion-icon>
+    const iconTurn = <ion-icon data-test="turn-btn" name="sync-outline" onClick={() => addAppearAnswer(props.answer)}></ion-icon>
     const iconRed = <ion-icon name="close-circle"></ion-icon>
     const iconOrange = <ion-icon name="help-circle"></ion-icon>
     const iconGreen = <ion-icon name="checkmark-circle"></ion-icon>
@@ -42,7 +42,7 @@ export default function Perguntas(props) {
                 isOrange={isOrange}
                 isGreen={isGreen}
             >
-                <span>
+                <span data-test="flashcard-text">
                     {concluded ? `Pergunta ${props.index + 1}` : "" ||
                         click ? props.question : `Pergunta ${props.index + 1}`
                     }

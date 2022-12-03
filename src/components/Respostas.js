@@ -27,15 +27,15 @@ export default function Respostas(props) {
     return (
         <AnswerBox disappear={disappear}
             concluded={props.concluded.includes(props.question)}>
-            <span>{props.answer}</span>
+            <span data-test="flashcard-text">{props.answer}</span>
             <BoxButtons>
-                <Red onClick={() => conclude(props.question, "red")}>
+                <Red data-test="no-btn" onClick={() => conclude(props.question, "red")}>
                     Não lembrei
                 </Red>
-                <Orange onClick={() => conclude(props.question, "orange")}>
+                <Orange data-test="partial-btn" onClick={() => conclude(props.question, "orange")}>
                     Quase não lembrei
                 </Orange>
-                <Green onClick={() => conclude(props.question, "green")}>
+                <Green data-test="zap-btn" onClick={() => conclude(props.question, "green")}>
                     Zap!
                 </Green>
             </BoxButtons>

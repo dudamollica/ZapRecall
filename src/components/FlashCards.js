@@ -43,7 +43,7 @@ export default function FlashCards(props) {
     props.setCardsLength(Cards.length)
 
     return (
-        <StyleFlashCards>
+        <StyleFlashCards data-test="flashcard">
         {Cards.map((q, index) => <Perguntas
         index={index}
         key={q.question}
