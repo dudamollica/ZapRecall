@@ -59,6 +59,8 @@ export default function FlashCards(props) {
         appearAnswer={appearAnswer}
         setAppearAnswer={setAppearAnswer}
         Cards={Cards}
+        concluded={props.concluded}
+        setConcluded={props.setConcluded}
     />)}
         </StyleFlashCards>
     )

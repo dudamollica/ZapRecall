@@ -33,9 +33,12 @@ export default function Perguntas(props) {
             </QuestionBox>
 
             <Respostas
+                question={props.question}
                 answer={props.answer}
                 appearAnswer={props.appearAnswer}
                 setAppearAnswer={props.setAppearAnswer}
+                concluded={props.concluded}
+                setConcluded={props.setConcluded}
             />
         </>
     )

@@ -3,7 +3,7 @@ import styled from "styled-components"
 export default function Contador(props){
     return (
         <StyleContador>
-         0/{props.cardsLength} Concluídos
+         {props.concluded.length}/{props.cardsLength} Concluídos
         </StyleContador>
     )
 }

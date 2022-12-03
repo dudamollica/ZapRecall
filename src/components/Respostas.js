@@ -3,17 +3,25 @@ import styled from "styled-components"
 
 export default function Respostas(props) {
     const disappear = props.appearAnswer.includes(props.answer)
+
+    function conclude(questionConcluded) {
+        if(!props.concluded.includes(questionConcluded)){
+            const newArray = [...props.concluded, questionConcluded]
+            props.setConcluded(newArray)
+        }
+    }
+
     return (
         <AnswerBox disappear={disappear}>
             <span>{props.answer}</span>
             <BoxButtons>
-                <Red>
+                <Red onClick={() => conclude(props.question)}>
                     Não lembrei
                 </Red>
-                <Orange>
+                <Orange onClick={() => conclude(props.question)}>
                     Quase não lembrei
                 </Orange>
-                <Green>
+                <Green onClick={() => conclude(props.question)}>
                     Zap!
                 </Green>
             </BoxButtons>
