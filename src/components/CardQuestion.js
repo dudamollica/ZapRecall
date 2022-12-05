@@ -21,7 +21,10 @@ export default function CardQuestion(props) {
     const isGreen = green.includes(question)
 
     return (
-        <FlashCard data-test="flashcard">
+        <FlashCard data-test="flashcard"
+        disappear={disappear}
+        click={click}
+        concluded={concludedQuestion}>
             <QuestionBox
                 click={click}
                 disappear={disappear}
@@ -51,11 +54,14 @@ export default function CardQuestion(props) {
     )
 }
 const FlashCard = styled.div`
-    background-color: #ffffff;
+    background-color: ${props=> props.concluded? "#ffffff" : "" || props.click? "#FFFFD5" : "#ffffff"};
     width: 60%;
     box-shadow: 0px 4px 5px rgba(0, 0, 0, 0.15);
     border-radius: 5px;
     margin-bottom: 25px;
+    transition: all 0.7s;
+    transform-style: preserve-3d;
+    transform: ${props=> props.concluded && "rotateY(360deg)" || props.disappear && "rotateY(180deg)"};
     @media(max-width:553px) {
         width:80%
     }
@@ -71,7 +77,7 @@ const QuestionBox = styled.div`
     justify-content: space-between;
     transition: height 0.5s;
     display: ${props => props.concluded ? "" : "none" && props.disappear ? "none" : ""};
-
+    backface-visibility: hidden;
     span{
     margin-top: ${props => props.concluded ? "0px" : "20px" && props.click ? "20px" : "0px"};
     font-family: 'Recursive';

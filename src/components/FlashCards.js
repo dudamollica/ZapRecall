@@ -100,5 +100,5 @@ width:100%;
 display: flex;
 flex-direction: column;
 align-items: center;
-margin-bottom: 110px;
+margin-bottom: 125px;
 `

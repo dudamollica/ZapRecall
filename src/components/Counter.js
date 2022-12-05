@@ -23,14 +23,12 @@ export default function Counter(props) {
     }
 
     return (
-        <StyleCounter containsIcon={props.status.length}>
+        <StyleCounter data-test="footer" containsIcon={props.status.length}>
 
             <StyleMsg>
                 {props.status.length == props.cardsLength && Msg()}
             </StyleMsg>
-            <span data-test="footer">
                 {props.concluded.length}/{props.cardsLength} Concluídos
-            </span>
             <div>
                 {props.status.map((s, index) => <Status icon={s} key={index} />)}
             </div>
@@ -76,6 +74,7 @@ color:${props => props.cor == "green" ? "#2FBE34" : props.cor};
 font-size: 23px;
 `
 const StyleMsg = styled.div`
+text-align: center;
 p{
 display: flex;
 flex-direction: column;

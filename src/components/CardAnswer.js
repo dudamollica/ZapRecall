@@ -31,6 +31,9 @@ const AnswerBox = styled.div`
     align-items: center;
     justify-content: center;
     text-align: center;
+    transform:rotateY(-180deg);
+    transform-style: preserve-3d;
+    backface-visibility: hidden;
    
 span{
     font-family: 'Recursive';
