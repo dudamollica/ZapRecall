@@ -25,19 +25,13 @@ export default function CardAnswer(props) {
 
 const AnswerBox = styled.div`
     display: ${props => props.concluded ? "none" : "flex" && props.disappear ? "flex" : "none"};
-    width: 55%;
-    height: 131px;
-    background: #FFFFD5;
-    box-shadow: 0px 4px 5px rgba(0, 0, 0, 0.15);
-    border-radius: 5px;
     margin-bottom: 25px;
+    padding-top: 25px;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     text-align: center;
-    @media(max-width:553px){
-    width:80%;
-    }
+   
 span{
     font-family: 'Recursive';
     font-style: normal;
@@ -65,7 +59,7 @@ div{
     &:hover{
     cursor: pointer;
     }
-    @media(max-width:450px){
+    @media(max-width:650px){
     width: 30%;
 }
 }

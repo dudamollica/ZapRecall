@@ -5,7 +5,10 @@ import React from "react"
 export default function FlashCards(props) {
     const [questions, setQuestions] = React.useState([])
     const [appearAnswer, setAppearAnswer] = React.useState([])
-
+    const [red, setRed] = React.useState([])
+    const [orange, setOrange] = React.useState([])
+    const [green, setGreen] = React.useState([])
+    
     const Cards = [
         {
             question: "O que é JSX?",
@@ -42,21 +45,51 @@ export default function FlashCards(props) {
     ]
     props.setCardsLength(Cards.length)
 
+    function selectedQuestion(question) {
+        if (!questions.includes(question)) {
+            const newArray = [...questions, question]
+            setQuestions(newArray)
+        }
+    }
+
+    function addAppearAnswer(answer) {
+        const newArray = [...appearAnswer, answer]
+        setAppearAnswer(newArray)
+    }
+
+    function conclude(questionConcluded, color) {
+        const newStatus = [...props.status, color]
+        props.setStatus(newStatus)
+
+        if (!props.concluded.includes(questionConcluded)) {
+            const newArray = [...props.concluded, questionConcluded]
+            props.setConcluded(newArray)
+        }
+        if (color == "red") {
+            const newRed = [...red, questionConcluded]
+            setRed(newRed)
+        }
+        if (color == "orange") {
+            const newOrange = [...orange, questionConcluded]
+            setOrange(newOrange)
+        }
+        if (color == "green") {
+            const newGreen = [...green, questionConcluded]
+            setGreen(newGreen)
+        }
+    }
+
     return (
-        <StyleFlashCards data-test="flashcard">
+        <StyleFlashCards>
             {Cards.map((q, index) => <CardQuestion
-                index={index}
-                key={q.question}
-                question={q.question}
-                answer={q.answer}
-                questions={questions}
-                setQuestions={setQuestions}
-                appearAnswer={appearAnswer}
-                setAppearAnswer={setAppearAnswer}
+                index={index} key={q.question}
+                question={q.question} answer={q.answer}
+                selectedQuestion={selectedQuestion}
+                addAppearAnswer={addAppearAnswer}
+                conclude={conclude}
                 concluded={props.concluded}
-                setConcluded={props.setConcluded}
-                status={props.status}
-                setStatus={props.setStatus}
+                red={red} orange={orange} green={green}
+                appearAnswer={appearAnswer} questions={questions}
             />)}
         </StyleFlashCards>
     )
@@ -67,5 +100,5 @@ width:100%;
 display: flex;
 flex-direction: column;
 align-items: center;
-margin-bottom: 70px;
+margin-bottom: 110px;
 `

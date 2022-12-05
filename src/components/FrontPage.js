@@ -11,7 +11,7 @@ export default function FrontPage({setClickStart}) {
         <FrontPageStyle>
             <img src={Logo} />
             <h1>ZapRecall</h1>
-            <button onClick={disappearFront}>Iniciar Recall!</button>
+            <button onClick={disappearFront} data-test="start-btn">Iniciar Recall!</button>
         </FrontPageStyle>
     )
 }

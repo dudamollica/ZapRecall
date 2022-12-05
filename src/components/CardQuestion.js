@@ -3,95 +3,66 @@ import React from "react"
 import CardAnswer from "./CardAnswer"
 
 export default function CardQuestion(props) {
-    const [red, setRed] = React.useState([])
-    const [orange, setOrange] = React.useState([])
-    const [green, setGreen] = React.useState([])
 
-    function selectedQuestion(question) {
-        if (!props.questions.includes(props.question)) {
-            const newArray = [...props.questions, question]
-            props.setQuestions(newArray)
-        }
-    }
+    const { index, key, question, answer, selectedQuestion, addAppearAnswer, conclude,
+        concluded, red, orange, green, appearAnswer, questions } = props
 
-    function addAppearAnswer(answer) {
-        const newArray = [...props.appearAnswer, answer]
-        props.setAppearAnswer(newArray)
-    }
+    const iconPlay = <ion-icon data-test="play-btn" name="play-outline" onClick={() => selectedQuestion(question)}></ion-icon>
+    const iconTurn = <ion-icon data-test="turn-btn" name="sync-outline" onClick={() => addAppearAnswer(answer)}></ion-icon>
+    const iconRed = <ion-icon name="close-circle" data-test="no-icon"></ion-icon>
+    const iconOrange = <ion-icon name="help-circle" data-test="partial-icon"></ion-icon>
+    const iconGreen = <ion-icon name="checkmark-circle" data-test="zap-icon"></ion-icon>
 
-    function conclude(questionConcluded, color) {
-        const newStatus = [...props.status, color]
-        props.setStatus(newStatus)
-
-        if (!props.concluded.includes(questionConcluded)) {
-            const newArray = [...props.concluded, questionConcluded]
-            props.setConcluded(newArray)
-        }
-        if (color == "red") {
-            const newRed = [...red, questionConcluded]
-            setRed(newRed)
-        }
-        if (color == "orange") {
-            const newOrange = [...orange, questionConcluded]
-            setOrange(newOrange)
-        }
-        if (color == "green") {
-            const newGreen = [...green, questionConcluded]
-            setGreen(newGreen)
-        }
-    }
-
-    const iconPlay = <ion-icon data-test="play-btn" name="play-outline" onClick={() => selectedQuestion(props.question)}></ion-icon>
-    const iconTurn = <ion-icon data-test="turn-btn" name="sync-outline" onClick={() => addAppearAnswer(props.answer)}></ion-icon>
-    const iconRed = <ion-icon name="close-circle"></ion-icon>
-    const iconOrange = <ion-icon name="help-circle"></ion-icon>
-    const iconGreen = <ion-icon name="checkmark-circle"></ion-icon>
-
-    const click = props.questions.includes(props.question)
-    const disappear = props.appearAnswer.includes(props.answer)
-    const concluded = props.concluded.includes(props.question)
-    const isRed = red.includes(props.question)
-    const isOrange = orange.includes(props.question)
-    const isGreen = green.includes(props.question)
+    const click = questions.includes(question)
+    const disappear = appearAnswer.includes(answer)
+    const concludedQuestion = concluded.includes(question)
+    const isRed = red.includes(question)
+    const isOrange = orange.includes(question)
+    const isGreen = green.includes(question)
 
     return (
-        <>
+        <FlashCard data-test="flashcard">
             <QuestionBox
                 click={click}
                 disappear={disappear}
-                concluded={concluded}
+                concluded={concludedQuestion}
                 isRed={isRed}
                 isOrange={isOrange}
-                isGreen={isGreen}
-            >
+                isGreen={isGreen}>
+
                 <span data-test="flashcard-text">
-                    {concluded ? `Pergunta ${props.index + 1}` : "" ||
-                        click ? props.question : `Pergunta ${props.index + 1}`
+                    {concludedQuestion ? `Pergunta ${index + 1}` : "" ||
+                        click ? question : `Pergunta ${index + 1}`
                     }
                 </span>
+
                 {isRed ? iconRed : "" || isOrange ? iconOrange : "" || isGreen ? iconGreen : "" ||
                     click ? iconTurn : iconPlay}
 
             </QuestionBox>
 
             <CardAnswer
-                question={props.question}
-                answer={props.answer}
-                appearAnswer={props.appearAnswer}
-                concluded={props.concluded}
-                conclude={conclude}
-            />
-        </>
+                question={question}
+                answer={answer}
+                appearAnswer={appearAnswer}
+                concluded={concluded}
+                conclude={conclude} />
+        </FlashCard>
     )
 }
-
-const QuestionBox = styled.div`
-    width: 50%;
-    height: ${props => props.concluded ? "65px" : "131px" && props.click ? "131px" : "65px"};  
-    background: #FFFFFF;
+const FlashCard = styled.div`
+    background-color: #ffffff;
+    width: 60%;
     box-shadow: 0px 4px 5px rgba(0, 0, 0, 0.15);
     border-radius: 5px;
     margin-bottom: 25px;
+    @media(max-width:553px) {
+        width:80%
+    }
+`
+
+const QuestionBox = styled.div`
+    height: ${props => props.concluded ? "65px" : "131px" && props.click ? "131px" : "65px"};  
     display: flex;
     flex-direction: ${props => props.concluded ? "row" : "column" && props.click ? "column" : "row"};
     align-items: ${props => props.concluded ? "center" : "flex-end" && props.click ? "flex-end" : "center"};
@@ -100,9 +71,7 @@ const QuestionBox = styled.div`
     justify-content: space-between;
     transition: height 0.5s;
     display: ${props => props.concluded ? "" : "none" && props.disappear ? "none" : ""};
-    @media(max-width:553px) {
-        width:70%
-    }
+
     span{
     margin-top: ${props => props.concluded ? "0px" : "20px" && props.click ? "20px" : "0px"};
     font-family: 'Recursive';
