@@ -47,6 +47,9 @@ table {
 ion-icon:hover{
     cursor:pointer;
 }
+body{
+    background-color: #FB6B6B;
+}
 `
 
 

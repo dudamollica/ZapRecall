@@ -1,11 +1,11 @@
 import styled from "styled-components"
-import Perguntas from "./Perguntas"
+import CardQuestion from "./CardQuestion"
 import React from "react"
 
 export default function FlashCards(props) {
     const [questions, setQuestions] = React.useState([])
     const [appearAnswer, setAppearAnswer] = React.useState([])
-    
+
     const Cards = [
         {
             question: "O que é JSX?",
@@ -13,56 +13,57 @@ export default function FlashCards(props) {
         },
         {
             question: "O React é __",
-            answer: "uma biblioteca JavaScript para construção de interfaces",
+            answer: "Uma biblioteca JavaScript para construção de interfaces",
         },
         {
             question: "Componentes devem iniciar com __",
-            answer: "letra maiúscula",
+            answer: "Letra maiúscula",
         },
         {
             question: "Podemos colocar __ dentro do JSX",
-            answer: "expressões",
+            answer: "Expressões",
         },
         {
             question: "O ReactDOM nos ajuda __ ",
-            answer: "interagindo com a DOM para colocar componentes React na mesma",
+            answer: "Interagindo com a DOM para colocar componentes React na mesma",
         },
         {
             question: "Usamos o npm para __",
-            answer: "gerenciar os pacotes necessários e suas dependências",
+            answer: "Gerenciar os pacotes necessários e suas dependências",
         },
         {
             question: "Usamos props para __",
-            answer: "passar diferentes informações para componentes",
+            answer: "Passar diferentes informações para componentes",
         },
         {
             question: "Usamos estado (state) para __",
-            answer: "dizer para o React quais informações quando atualizadas devem renderizar a tela novamente",
+            answer: "Dizer para o React quais informações quando atualizadas devem renderizar a tela novamente",
         }
     ]
     props.setCardsLength(Cards.length)
 
     return (
         <StyleFlashCards data-test="flashcard">
-        {Cards.map((q, index) => <Perguntas
-        index={index}
-        key={q.question}
-        question={q.question}
-        questions={questions}
-        answer={q.answer}
-        setQuestions={setQuestions}
-        appearAnswer={appearAnswer}
-        setAppearAnswer={setAppearAnswer}
-        Cards={Cards}
-        concluded={props.concluded}
-        setConcluded={props.setConcluded}
-    />)}
+            {Cards.map((q, index) => <CardQuestion
+                index={index}
+                key={q.question}
+                question={q.question}
+                answer={q.answer}
+                questions={questions}
+                setQuestions={setQuestions}
+                appearAnswer={appearAnswer}
+                setAppearAnswer={setAppearAnswer}
+                concluded={props.concluded}
+                setConcluded={props.setConcluded}
+                status={props.status}
+                setStatus={props.setStatus}
+            />)}
         </StyleFlashCards>
     )
 }
 
 const StyleFlashCards = styled.div`
-background-color: #FB6B6B;
+width:100%;
 display: flex;
 flex-direction: column;
 align-items: center;

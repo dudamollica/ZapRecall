@@ -1,41 +1,21 @@
 import React from "react"
 import styled from "styled-components"
 
-export default function Respostas(props) {
+export default function CardAnswer(props) {
     const disappear = props.appearAnswer.includes(props.answer)
-
-    function conclude(questionConcluded, color) {
-        if (!props.concluded.includes(questionConcluded)) {
-            const newArray = [...props.concluded, questionConcluded]
-            props.setConcluded(newArray)
-        }
-        if (color == "red") {
-        const newRed= [...props.red, questionConcluded]
-        props.setRed(newRed)
-        }
-        if (color == "orange") {
-        const newOrange= [...props.orange, questionConcluded]
-        props.setOrange(newOrange)
-        }
-        if (color == "green") {
-        const newGreen= [...props.green, questionConcluded]
-        props.setGreen(newGreen)
-        }
-    }
-
 
     return (
         <AnswerBox disappear={disappear}
             concluded={props.concluded.includes(props.question)}>
             <span data-test="flashcard-text">{props.answer}</span>
             <BoxButtons>
-                <Red data-test="no-btn" onClick={() => conclude(props.question, "red")}>
+                <Red data-test="no-btn" onClick={() => props.conclude(props.question, "red")}>
                     Não lembrei
                 </Red>
-                <Orange data-test="partial-btn" onClick={() => conclude(props.question, "orange")}>
+                <Orange data-test="partial-btn" onClick={() => props.conclude(props.question, "orange")}>
                     Quase não lembrei
                 </Orange>
-                <Green data-test="zap-btn" onClick={() => conclude(props.question, "green")}>
+                <Green data-test="zap-btn" onClick={() => props.conclude(props.question, "green")}>
                     Zap!
                 </Green>
             </BoxButtons>
@@ -45,7 +25,7 @@ export default function Respostas(props) {
 
 const AnswerBox = styled.div`
     display: ${props => props.concluded ? "none" : "flex" && props.disappear ? "flex" : "none"};
-    width: 50%;
+    width: 55%;
     height: 131px;
     background: #FFFFD5;
     box-shadow: 0px 4px 5px rgba(0, 0, 0, 0.15);
@@ -54,6 +34,10 @@ const AnswerBox = styled.div`
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    text-align: center;
+    @media(max-width:553px){
+    width:80%;
+    }
 span{
     font-family: 'Recursive';
     font-style: normal;
@@ -80,6 +64,9 @@ div{
     color: white;
     &:hover{
     cursor: pointer;
+    }
+    @media(max-width:450px){
+    width: 30%;
 }
 }
 `

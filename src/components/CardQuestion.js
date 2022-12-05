@@ -1,8 +1,8 @@
 import styled from "styled-components"
 import React from "react"
-import Respostas from "./Respostas"
+import CardAnswer from "./CardAnswer"
 
-export default function Perguntas(props) {
+export default function CardQuestion(props) {
     const [red, setRed] = React.useState([])
     const [orange, setOrange] = React.useState([])
     const [green, setGreen] = React.useState([])
@@ -17,6 +17,28 @@ export default function Perguntas(props) {
     function addAppearAnswer(answer) {
         const newArray = [...props.appearAnswer, answer]
         props.setAppearAnswer(newArray)
+    }
+
+    function conclude(questionConcluded, color) {
+        const newStatus = [...props.status, color]
+        props.setStatus(newStatus)
+
+        if (!props.concluded.includes(questionConcluded)) {
+            const newArray = [...props.concluded, questionConcluded]
+            props.setConcluded(newArray)
+        }
+        if (color == "red") {
+            const newRed = [...red, questionConcluded]
+            setRed(newRed)
+        }
+        if (color == "orange") {
+            const newOrange = [...orange, questionConcluded]
+            setOrange(newOrange)
+        }
+        if (color == "green") {
+            const newGreen = [...green, questionConcluded]
+            setGreen(newGreen)
+        }
     }
 
     const iconPlay = <ion-icon data-test="play-btn" name="play-outline" onClick={() => selectedQuestion(props.question)}></ion-icon>
@@ -52,19 +74,12 @@ export default function Perguntas(props) {
 
             </QuestionBox>
 
-            <Respostas
+            <CardAnswer
                 question={props.question}
                 answer={props.answer}
                 appearAnswer={props.appearAnswer}
-                setAppearAnswer={props.setAppearAnswer}
                 concluded={props.concluded}
-                setConcluded={props.setConcluded}
-                red={red}
-                setRed={setRed}
-                orange={orange}
-                setOrange={setOrange}
-                green={green}
-                setGreen={setGreen}
+                conclude={conclude}
             />
         </>
     )
@@ -85,6 +100,9 @@ const QuestionBox = styled.div`
     justify-content: space-between;
     transition: height 0.5s;
     display: ${props => props.concluded ? "" : "none" && props.disappear ? "none" : ""};
+    @media(max-width:553px) {
+        width:70%
+    }
     span{
     margin-top: ${props => props.concluded ? "0px" : "20px" && props.click ? "20px" : "0px"};
     font-family: 'Recursive';

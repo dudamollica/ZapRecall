@@ -1,25 +1,32 @@
-import Topo from "./components/Topo";
+import Main from "./components/Main";
 import GlobalStyle from "./GlobalStyle";
-import Contador from "./components/Contador"
-import FlashCards from "./components/FlashCards"
 import React from "react";
+import FrontPage from "./components/FrontPage";
+import styled from "styled-components";
 
 function App() {
-  const [cardsLength, setCardsLength] = React.useState([])
-  const [concluded, setConcluded] = React.useState([])
+  const [clickStart, setClickStart] = React.useState(false)
 
   return (
     <>
       <GlobalStyle />
-      <Topo />
-      <FlashCards
-        setCardsLength={setCardsLength}
-        concluded={concluded}
-        setConcluded={setConcluded}
-      />
-      <Contador concluded={concluded} cardsLength={cardsLength} />
+
+      <FrontVisibility clickStart={clickStart}>
+        <FrontPage setClickStart={setClickStart} />
+      </FrontVisibility>
+
+      <MainVisibility clickStart={clickStart}>
+        <Main />
+      </MainVisibility>
     </>
   );
 }
 
 export default App;
+
+const FrontVisibility = styled.div`
+display: ${props => props.clickStart && "none"};
+`
+const MainVisibility = styled.div`
+display: ${props => !props.clickStart && "none"};
+`
